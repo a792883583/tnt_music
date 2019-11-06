@@ -1,4 +1,4 @@
-# txt_music基于网易云音乐项目
+# tnt_music基于网易云音乐项目
 ## 启动本项目需要先将<a href="https://github.com/Binaryify/NeteaseCloudMusicApi">https://github.com/Binaryify/NeteaseCloudMusicApi</a>项目启动
 ## 具体的操作是：
 ## 安装<a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>，然后安装<a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>选择适合你操作系统的安装包安装。

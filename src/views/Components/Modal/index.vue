@@ -1,16 +1,16 @@
 <!--  -->
 <template>
-  <div class="txt-model">
+  <div class="tnt-model">
     <button class="type1" @click="showVuePopup(true)">vue transition</button>
     <!-- 方法二：通过vue的transition配合css3动画实现  -->
-    <div class="txt-model-domContent">
-      <div class="txt-model-mask" v-show="myValue" @click="showVuePopup(false)">
+    <div class="tnt-model-domContent">
+      <div class="tnt-model-mask" v-show="myValue" @click="showVuePopup(false)">
         <transition name="slide">
-          <div class="txt-model-close" v-if="closable">
+          <div class="tnt-model-close" v-if="closable">
             
           </div>
-          <div class="txt-model-content" v-show="myValue" :class="centered ? 'centered' : null">
-            <div class="txt-model-header">
+          <div class="tnt-model-content" v-show="myValue" :class="centered ? 'centered' : null">
+            <div class="tnt-model-header">
 
             </div>
           </div>

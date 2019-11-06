@@ -102,7 +102,7 @@
         </li>
       </ul>
     </div>
-    <div class="user-info">
+    <div class="user-info" v-if="getToken()">
       <div class="avatar">
         <img v-lazy="avatarUrl" />
       </div>
@@ -112,7 +112,7 @@
       <div class="user-info-detail">
         <img src="../../images/user-info-detail.png" alt="查看详情" />
       </div>
-      <Icon type="md-close" size="22" class="close" @click="exitlogin" title="退出登录"/>
+      <Icon type="md-close" size="22" class="close" @click="exitlogin" title="退出登录" />
     </div>
   </div>
 </template>
@@ -146,11 +146,19 @@ export default {
         }
       });
     },
+    /** 判断用户是否登陆 */
+    getToken() {
+      if (getToken()) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     /** 退出登录事件 */
-    exitlogin(){
+    exitlogin() {
       removeToken();
-      this.$Message.success('退出成功！欢迎再次使用本系统！');
-      goPageByPath('/login');
+      this.$Message.success("退出成功！欢迎再次使用本系统！");
+      goPageByPath("/login");
     },
     /** 初始化选中事件处理 */
     initactivenav() {

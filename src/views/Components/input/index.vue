@@ -15,7 +15,7 @@
       class="code"
       @click="codeftn()"
       title="点击发送验证码"
-    >{{codecount === 0 ? codetxt : codecount}}</div>
+    >{{codecount === 0 ? codetnt : codecount}}</div>
   </div>
 </template>
 
@@ -57,7 +57,7 @@ export default {
     return {
       myValue: "",
       time: null,
-      codetxt: "发送验证码",
+      codetnt: "发送验证码",
       codecount: 0,
       codetime: null,
       zudisabled: false

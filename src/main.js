@@ -9,8 +9,8 @@ Vue.use(iView);
 import Talert from './views/Components/talert';
 Vue.createAPI(Talert, true);
 /** 自制组件注册 */
-import TXTComponents from '../src/views/Components/Components';
-Vue.use(TXTComponents);
+import tntComponents from '../src/views/Components/Components';
+Vue.use(tntComponents);
 import {
   getToken
 } from 'utils/utils'
@@ -38,13 +38,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  if (to.name != 'login' && getToken() == undefined) {
-    next({
-      name: 'login'
-    });
-  } else {
-    next();
-  }
+  next();
 });
 
 /** eslint-disable no-new */
