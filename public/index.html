@@ -5,7 +5,7 @@
   <!-- 编码格式 -->
   <meta charset="utf-8">
   <!-- 强制使用最新ie浏览器渲染 -->
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <!-- 禁止百度转码 -->
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <!-- 使用webkit内核渲染(当然没有webkit内核就没办法) -->
@@ -13,8 +13,10 @@
   <!-- width=device-width 强制让文档的宽度与设备的宽度保持1:1
     initial-scale 文档初始化缩放比例是1:1
     maximum-scale 不允许用户点击屏幕放大浏览
-    user-scalable 允许用户缩放到的最大比例 -->
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    user-scalable 不允许用户缩放 -->
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;" />
+  <meta name="Keywords" content="tnt_music,个人,播放器,音乐,网易云" />
+  <meta name="Description" content="tnt_music是个人开发的一款在线仿网易云播放器。个人合作、联系邮箱：792883583@qq.com!" />
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title>tnt_music</title>
   <style>
@@ -26,8 +28,7 @@
 
 <body>
   <noscript>
-    <strong>We're sorry but tnt_music doesn't work properly without JavaScript enabled. Please enable it to
-      continue.</strong>
+    <strong>tnt_music提醒您：请允许JavaScript运行，以获得更好的使用体验！推荐使用Chrome浏览器访问页面</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
