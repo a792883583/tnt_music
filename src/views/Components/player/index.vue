@@ -4,16 +4,21 @@
     <div class="song-info-songer-info">
       <div class="songer-avatar">
         <img
-          v-lazy="songinfo.picUrl"
+          :src="songinfo.picUrl"
           :alt="songinfo.name"
           :class="playstate ? 'img-play' : 'img-pause'"
           @click="songdetail"
         />
       </div>
       <div class="song-info">
-        <h5 id="songer-name">{{songinfo.name}}</h5>
-        <div id="singer-names" v-if="songinfo.songer && songinfo.songer.length > 0">
-          <span v-for="(item,index) in songinfo.songer" :key="index">{{item.name}}</span>
+        <h5 id="songer-name">{{ songinfo.name }}</h5>
+        <div
+          id="singer-names"
+          v-if="songinfo.songer && songinfo.songer.length > 0"
+        >
+          <span v-for="(item, index) in songinfo.songer" :key="index">{{
+            item.name
+          }}</span>
         </div>
       </div>
     </div>
@@ -23,7 +28,11 @@
         <img src="../../../images/big_prev.png" @click="prevsongers" />
       </div>
       <div class="play-pause" :title="playstate ? '暂停' : '播放'">
-        <button class="music-play" v-if="playstate" @click="musicpause"></button>
+        <button
+          class="music-play"
+          v-if="playstate"
+          @click="musicpause"
+        ></button>
         <button class="music-pause" v-else @click="player"></button>
         <!-- <img src="../../../images/big_play.png" v-if="playstate" @click="musicpause" /> -->
         <!-- <img src="../../../images/big_pause.png" v-else @click="musicplayer" /> -->
@@ -41,20 +50,28 @@
             ref="lyricLine"
             v-for="(item, key, index) in songerlyriclist"
             :key="index"
-          >{{item}}</p>
+          >
+            {{ item }}
+          </p>
         </div>
-        <div class="songer-lyrics-ctn" v-if="songerlyriclist.length === 0 && lyricstatus">
+        <div
+          class="songer-lyrics-ctn"
+          v-if="songerlyriclist.length === 0 && lyricstatus"
+        >
           <p>此歌曲是纯音乐，请尽情享受吧！</p>
         </div>
       </scroll>
     </div>
     <!-- 歌曲进度条 -->
     <div class="player-ctn">
-      <div class="player-elapsed-time">{{songschedule}}</div>
+      <div class="player-elapsed-time">{{ songschedule }}</div>
       <div class="progress-bar-wrapper">
         <div class="progress-bar" ref="progressBar" @click="progressClick">
           <div class="bar-inner">
-            <div class="progress-buffered" :style="{width: playerbuffered}"></div>
+            <div
+              class="progress-buffered"
+              :style="{ width: playerbuffered }"
+            ></div>
             <div class="progress" ref="progress"></div>
             <div
               class="progress-btn-wrapper"
@@ -68,14 +85,22 @@
           </div>
         </div>
       </div>
-      <div class="player-play-time">{{songcount}}</div>
+      <div class="player-play-time">{{ songcount }}</div>
     </div>
     <div class="player-operating">
       <a ref="download" @click="downloadsuccess">
         <img src="../../../images/download.png" />
       </a>
-      <volume @position="position" ref="volume" @settingvolume="settingvolume"></volume>
-      <img src="../../../images/playlist_cycle.png" v-if="playermode === 0" @click="switchmode(1)" />
+      <volume
+        @position="position"
+        ref="volume"
+        @settingvolume="settingvolume"
+      ></volume>
+      <img
+        src="../../../images/playlist_cycle.png"
+        v-if="playermode === 0"
+        @click="switchmode(1)"
+      />
       <img
         src="../../../images/player_random.png"
         v-else-if="playermode === 1"
@@ -109,7 +134,7 @@ import {
   prefixStyle,
   playerrandom,
   download,
-  initscrollAnimation
+  initscrollAnimation,
 } from "utils/utils";
 import scroll from "../scroll/index";
 import volume from "../volume/index";
@@ -143,16 +168,16 @@ export default {
       /** 音乐是否准备就绪 */
       musicstatus: false,
       /** 歌词加载状态 */
-      lyricstatus: false
+      lyricstatus: false,
     };
   },
   components: {
     scroll,
     volume,
-    playerlist
+    playerlist,
   },
   mounted() {
-    bus.$on("initcurrent", data => {
+    bus.$on("initcurrent", (data) => {
       this.$refs.audio.currentTime = data;
     });
   },
@@ -166,8 +191,8 @@ export default {
       "playermode",
       "playerlist",
       "playervolume",
-      "playerstatus"
-    ])
+      "playerstatus",
+    ]),
   },
   methods: {
     ...mapMutations({
@@ -188,7 +213,7 @@ export default {
       /** 修改当前播放器播放列表 */
       setplayerlist: "SET_PLAYERLIST",
       /** 修改播放器显示状态 */
-      setplayerstatus: "SET_PLAYERSTATUS"
+      setplayerstatus: "SET_PLAYERSTATUS",
     }),
     /** 用户手动切换模式点击事件 */
     switchmode(item) {
@@ -226,7 +251,7 @@ export default {
           this.prevsongerlist.length
             ? this.prevsongerlist[this.prevsongerlist.length - 1]
             : this.prevsongerlist
-        ).then(res => {
+        ).then((res) => {
           if (res.data.code === 200) {
             this.prevsongerlist = this.prevsongerlist.slice(
               0,
@@ -372,7 +397,7 @@ export default {
       /** 如果音乐不可用，则不执行下方代码 */
       let singstatus = false;
       this.activestatus = false;
-      singerstatus(this.currentsongId).then(res => {
+      singerstatus(this.currentsongId).then((res) => {
         if (res.data.success === true) {
           if (res.data.message !== "ok") {
             singstatus = true;
@@ -392,7 +417,7 @@ export default {
       /** 如果音乐可用 */
       if (!singstatus) {
         /** 获取歌曲播放地址 */
-        singerurl(this.currentsongId).then(res => {
+        singerurl(this.currentsongId).then((res) => {
           if (res.data.code === 200) {
             let data = res.data.data[0];
             if (data.url) {
@@ -543,11 +568,13 @@ export default {
     },
     /** 缓冲条进度 */
     initbuffer() {
-      this.playerbuffered =
-        (this.$refs.audio.buffered.end(this.$refs.audio.buffered.length - 1) /
-          this.$refs.audio.duration) *
-          100 +
-        "%";
+      if (this.$refs.audio.buffered.length) {
+        this.playerbuffered =
+          (this.$refs.audio.buffered.end(this.$refs.audio.buffered.length - 1) /
+            this.$refs.audio.duration) *
+            100 +
+          "%";
+      }
     },
     /** 当前播放位置 */
     timeupdate(e) {
@@ -573,7 +600,7 @@ export default {
     },
     /** 获取歌词 */
     singerlyric() {
-      singerlyric(this.currentsongId).then(res => {
+      singerlyric(this.currentsongId).then((res) => {
         if (res.data.code === 200) {
           let data = res.data;
           if (data && data["lrc"]) {
@@ -648,7 +675,7 @@ export default {
     initscrollAnimation() {
       initscrollAnimation("#songer-name");
       initscrollAnimation("#singer-names");
-    }
+    },
   },
   created() {
     /** 初始化touch对象 */
@@ -713,8 +740,8 @@ export default {
         }
         this.songernormallist = date;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang='less' scoped>
