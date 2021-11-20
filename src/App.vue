@@ -16,7 +16,7 @@ export default {
     },
     created() {
         if (this._isMobile()) {
-            window.open("http://www.jb51.net");
+            window.open("http://m.music.tangxintao.cn/");
         }
         if (localStorage.getItem("warning") != "true") {
             this.$Notice.warning({
